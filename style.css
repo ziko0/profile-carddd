@@ -5,14 +5,20 @@
 }
 
 body{
-    width: 100%;
+    position: relative;
+    /* width: 100%; */
     height: 100vh;
     background-color: hsl(185, 75%, 39%);
-    /* background: linear-gradient(180deg, rgba(9, 137, 180, 0.0001) 0.78%, #53FFEE 99.94%); */
-    background-image: url(/images/oval2.png);
-    background-repeat: no-repeat;
-    object-fit: contain;
+    background-image: url(./images/bg-pattern-top.svg), url(./images/bg-pattern-bottom.svg);
+  background-repeat: no-repeat, no-repeat;
+  background-position: top -30rem left -30rem, bottom -30rem right -27rem;
+
+
     font-family: 'Kumbh Sans';
+}
+
+img{
+    display: block;
 }
 
 .container{
@@ -23,64 +29,53 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .card{
+    position: relative;
     width: 350px;
     height: 374px;
     background: #FFFFFF;
     box-shadow: 0px 50px 100px -20px rgba(8, 70, 94, 0.504835);
     border-radius: 15px;
-
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 114px auto 88px;
-    grid-row-gap: 10px;
-    justify-content: center;
-    text-align: center;
-    /* position: relative; */
 }
+
+/* header of card */
 
 header{
-    grid-column: 1 / span 3;
-    grid-row: 1;
-    background-image: url(./images/bubbles.png);
-    background-color: #41CBD3;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px 15px 0 0;
+    height: 140px;
+    background-color:  hsl(185, 75%, 39%);;
 }
-
-
-
-main{
-    grid-column: 1 / span 3;
-    grid-row: 2;
-}
-
-footer{
-    grid-column: 1 / span 3;
-    grid-row: 3;
-}
-
-/* header  img*/
 
 header img{
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 100%;
+    object-fit: contain;
+    border-radius: 10px ;
 }
 
-/* main */
-
 main{
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
 
+.oval{
+    position: absolute;
+    left: calc(50% - 96px/2);
+    top: calc(50% - 96px/2 - 47px);
+    object-fit: contain;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    text-align: center;
+    margin-top: 5rem;
 }
 
 .name{
@@ -89,15 +84,12 @@ main{
     line-height: 22px;
     text-align: center;
     color: #2E3349;
-    margin-top:2rem;
 }
 
-.name span{
+.number{
+    color: #6B7082;
     font-weight: 400;
     font-size: 18px;
-    text-align: center;
-    color: #6B7082;
-    padding-left: 0.2rem;
 }
 
 .city{
@@ -106,27 +98,32 @@ main{
     line-height: 17px;
     text-align: center;
     color: #6B7082;
-    margin-top: 1rem;
 }
 
-/* footer */
-
-.line{
-    border: none;
-    height: 1px;
-    background-color: #E8E9EC;
+.line::before{
+    content:" ";
+    display: block;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    top: 79%;
+    left: 0;
+    background: #E8E9EC;
 }
 
-.footer-container{
+
+.social{
+    margin-top: 2.5rem;
+    width: 100%;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 1.5rem;
+    justify-content: space-evenly 
+    /* gap: 58px; */
 }
 
-.item{
+.social-item{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
 }
 
@@ -134,15 +131,34 @@ main{
     font-weight: 700;
     font-size: 18px;
     line-height: 22px;
-    text-align: center;
     color: #2E3349;
+    text-transform: uppercase;
 }
 
 .text{
     font-weight: 400;
     font-size: 10px;
     line-height: 12px;
-    text-align: center;
     letter-spacing: 1.5px;
     color: #6B7082;
+}
+
+/* background oval images */
+
+.bg-img{
+    position: relative;
+    z-index: 2;
+    background: url(./images/oval2.png) top left no-repeat, 
+                url(./images/oval2.png) bottom left no-repeat;
+}
+
+.bg-img::before{
+    content: '';
+    position: absolute;
+    z-index: -1; /* push it to the background */
+    top: 12px; /* position it off the top background */
+    right: 0;
+    bottom: 12px; /* position it off the bottom background */
+    left: 0;
+    background: url(./images/oval2.png) top left repeat-y;
 }
